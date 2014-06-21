@@ -1,14 +1,18 @@
-CC = g++
-CFLAGS  = -g -Wall
+CC=g++
+CFLAGS=-g -Wall
+LDFLAGS=
+SOURCES=ParagraphFormattingTestDrive.cpp
+OBJECTS=$(SOURCES:.cpp=.o)
+EXECUTABLE=ParagraphFormattingTestDrive
 
-all: ParagraphFormattingTestDrive
+all: $(SOURCES) $(EXECUTABLE)
 
-ParagraphFormattingTestDrive: ParagraphFormattingTestDrive.o 
-	$(CC) -o ParagraphFormattingTestDrive ParagraphFormattingTestDrive.o 
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
-ParagraphFormattingTestDrive.o: ParagraphFormattingTestDrive.cpp
-	$(CC) $(CFLAGS) ParagraphFormattingTestDrive.cpp
+.cpp.o:
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean: 
-	$(RM) ParagraphFormattingTestDrive *.o *~
+	$(RM) $(EXECUTABLE) *.o
 
