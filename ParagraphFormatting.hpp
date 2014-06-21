@@ -16,8 +16,10 @@ friend std::ostream& operator<<(std::ostream &os, const Paragraph &p)
 {
 	for (int i = 0; i < p._numwords; ++i)
 	{
-		if (i == p._paragraph[i].LineNumber)
-			os << std::endl;
+		if (i > 0) {
+			if (p._paragraph[i - 1].LineNumber != p._paragraph[i].LineNumber)
+				os << std::endl;
+		}
 
 		for (int j = 0; j < p._paragraph[i].WordLength; ++j) {
 			os << i + 1;
@@ -27,6 +29,7 @@ friend std::ostream& operator<<(std::ostream &os, const Paragraph &p)
 		//		 j < p._maxchars; ++j)
 			os << "0";
 	}
+	os << std::endl;
 }
 
 public:

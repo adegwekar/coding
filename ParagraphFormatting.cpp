@@ -57,7 +57,7 @@ void Paragraph::ReplaceWord(int Word, int NewLength)
 			_paragraph[i].LineNumber = _paragraph[i - 1].LineNumber;
 			_paragraph[i].CharacterNumber =
 				_paragraph[i - 1].CharacterNumber +
-				_paragraph[i - 1].WordLength + 1 + 1;
+				_paragraph[i - 1].WordLength + 1;
 		} else {
 			//This word no longer fits in the current line, bump it to next
 			_paragraph[i].LineNumber = _paragraph[i - 1].LineNumber + 1;
