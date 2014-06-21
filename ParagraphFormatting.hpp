@@ -14,16 +14,18 @@ class Paragraph
 {
 friend std::ostream& operator<<(std::ostream &os, const Paragraph &p)
 {
-	//for (int i = 0; i < p._numwords; ++i)
+	for (int i = 0; i < p._numwords; ++i)
 	{
-		//if (i == p._paragraph[i].LineNumber)
-		//	os << std::endl;
+		if (i == p._paragraph[i].LineNumber)
+			os << std::endl;
 
-		//for (int j = 0; j < p._paragraph[i].WordLength; ++j) {
-		//	os << i + 1;
-		//}
+		for (int j = 0; j < p._paragraph[i].WordLength; ++j) {
+			os << i + 1;
+		}
 
-		os << "0";
+		//for (int j = p._paragraph[i].CharacterNumber + p._paragraph[i].WordLength; 
+		//		 j < p._maxchars; ++j)
+			os << "0";
 	}
 }
 
