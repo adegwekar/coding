@@ -1,4 +1,8 @@
+#ifndef __PARGRAPHFORMATTING_HPP__
+#define __PARGRAPHFORMATTING_HPP__
+
 #include <string>
+#include <iostream>
 
 struct WordPosition {
 	int LineNumber;
@@ -8,6 +12,21 @@ struct WordPosition {
 
 class Paragraph
 {
+friend std::ostream& operator<<(std::ostream &os, const Paragraph &p)
+{
+	//for (int i = 0; i < p._numwords; ++i)
+	{
+		//if (i == p._paragraph[i].LineNumber)
+		//	os << std::endl;
+
+		//for (int j = 0; j < p._paragraph[i].WordLength; ++j) {
+		//	os << i + 1;
+		//}
+
+		os << "0";
+	}
+}
+
 public:
 	Paragraph(int MaxChars, int NumWords, int WordLengths[]);
 
@@ -31,3 +50,5 @@ private:
 	Paragraph(const Paragraph&) {};
 	Paragraph& operator=(const Paragraph &) {};
 };
+
+#endif //__PARGRAPHFORMATTING_HPP__

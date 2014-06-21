@@ -19,7 +19,7 @@ Paragraph::Paragraph(int MaxChars, int NumWords, int WordLengths[]):
 			_paragraph[i - 1].WordLength + 1
 			+ WordLengths[i] > _maxchars) {
 			// Not enough, just move this word to next line
-			_paragraph[i].LineNumber = _paragraph[i - 1].LineNumber+1;
+			_paragraph[i].LineNumber = _paragraph[i - 1].LineNumber + 1;
 			_paragraph[i].CharacterNumber = 0;
 		} else {
 			// Enough space, so place the word in the same line
@@ -35,24 +35,33 @@ Paragraph::Paragraph(int MaxChars, int NumWords, int WordLengths[]):
 
 void Paragraph::ReplaceWord(int Word, int NewLength)
 {
+	//No change
+	if (_paragraph[(Word - 1)].WordLength == NewLength)
+		return ;
+
 	_paragraph[(Word - 1)].WordLength = NewLength;
 
-	//If this word no longer fits in the current line, bump it to next
-	if (_paragraph[(Word - 1)].CharacterNumber + 
-		_paragraph[(Word - 1)].WordLength > _maxchars) {
-		++_paragraph[(Word - 1)].LineNumber;
-		_paragraph[(Word - 1)].CharacterNumber = 0;
+	// Word 1 (index 0) doesn't need to shift
+	if (Word == 1) {
+		++Word;
 	}
-	
-	//Check if this word can now be inserted into previous line
-	if (_paragraph[(Word - 1)].LineNumber != 0) {
-		if (_paragraph[(Word - 1) - 1].CharacterNumber +
-			_paragraph[(Word - 1) - 1].WordLength + 1 +
-			_paragraph[(Word - 1)].WordLength <= _maxchars) {
-			--_paragraph[(Word - 1)].LineNumber;
-			_paragraph[(Word - 1)].CharacterNumber = 
-				_paragraph[(Word - 1) - 1].CharacterNumber + 
-				_paragraph[(Word - 1) - 1].WordLength + 1 + 1;
+
+	//Shift the rest of the words
+	for (int i = Word - 1; i < _numwords; ++i) {
+		//Check if this word can be inserted into or can remain
+		// in previous line
+		if (_paragraph[i - 1].CharacterNumber +
+			_paragraph[i - 1].WordLength + 1 +
+			_paragraph[i].WordLength <= _maxchars) {
+			//This word can be inserted into previous line
+			_paragraph[i].LineNumber = _paragraph[i - 1].LineNumber;
+			_paragraph[i].CharacterNumber =
+				_paragraph[i - 1].CharacterNumber +
+				_paragraph[i - 1].WordLength + 1 + 1;
+		} else {
+			//This word no longer fits in the current line, bump it to next
+			_paragraph[i].LineNumber = _paragraph[i - 1].LineNumber + 1;
+			_paragraph[i].CharacterNumber = 0;
 		}
 	}
 }
