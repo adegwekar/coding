@@ -15,6 +15,12 @@ int main(int argc, char* argv[])
 	p.ReplaceWord(2, 3);
 	(p.PrintLineNumber(2) == 2) ? cout << "Pass" : cout << "Fail";
 	cout << endl;
+	p.ReplaceWord(2, 1);
+	(p.PrintLineNumber(2) == 1) ? cout << "Pass" : cout << "Fail";
+	cout << endl;
+	p.ReplaceWord(1, 3);
+	(p.PrintLineNumber(2) == 2) ? cout << "Pass" : cout << "Fail";
+	cout << endl;
 
 	return 0;
 }

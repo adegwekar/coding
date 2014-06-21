@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-g -Wall
 LDFLAGS=
-SOURCES=ParagraphFormattingTestDrive.cpp ParagraphFormatting.hpp
+SOURCES=ParagraphFormattingTestDrive.cpp ParagraphFormatting.cpp
 #LIBSOURCES=ParagraphFormatting.hpp
 OBJECTS=$(SOURCES:.cpp=.o)
 #LIBOBJECTS=$(LIBSOURCES:.cpp=.o)
