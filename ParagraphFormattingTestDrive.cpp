@@ -5,9 +5,11 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	int Test1[] = {1, 2};
+	int WordLengths1[] = {1, 2};
 
-	Paragraph p(4, 2, Test1);
+	Paragraph p(4, 2, WordLengths1);
+	(p.PrintLineNumber(1) == 1) ? cout << "Pass" : cout << "Fail";
+	cout << endl;
 	(p.PrintLineNumber(2) == 1) ? cout << "Pass" : cout << "Fail";
 	cout << endl;
 	p.ReplaceWord(2, 3);
@@ -16,4 +18,3 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
-
