@@ -1,5 +1,15 @@
 
-int foo(void)
+void CreateParagraph(int MaxChars, int NumWords, int WordLengths[])
 {
-	return 0;
+	return;
+}
+
+int PrintLineNumber(int Word)
+{
+	return 1;
+}
+
+void ReplaceWord(int Word, int NewLength)
+{
+	return;
 }
