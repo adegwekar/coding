@@ -6,7 +6,7 @@
 
 struct WordPosition {
 	int LineNumber;
-	int CharacterNumber;
+	int CharacterPosition;
 	int WordLength;
 };
 
@@ -25,7 +25,7 @@ friend std::ostream& operator<<(std::ostream &os, const Paragraph &p)
 			os << i + 1;
 		}
 
-		//for (int j = p._paragraph[i].CharacterNumber + p._paragraph[i].WordLength; 
+		//for (int j = p._paragraph[i].CharacterPosition + p._paragraph[i].WordLength; 
 		//		 j < p._maxchars; ++j)
 			os << "0";
 	}
