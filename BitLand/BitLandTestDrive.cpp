@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 	std::cin >> t;
 	for (int i = 0; i < t; ++i) {
 		std::cin >> k;
-		PrintToll(Towns, k);
+		std::cout << PrintToll(Towns, k) << std::endl;
 	}
 
 	RemoveRoads(Towns, n);
@@ -32,4 +32,3 @@ int main(int argc, char *argv[])
 
     return 0;
 }
-
