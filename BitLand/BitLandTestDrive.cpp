@@ -1,35 +1,5 @@
 #include <iostream>
-
-struct RoadCost {
-	int Town;
-	int Cost;
-	RoadCost *next;
-};
-
-struct BitLandTowns {
-	RoadCost *Cheapest;
-	RoadCost *Costliest;
-};
-
-void AddRoads(BitLandTowns *Towns, int TownFrom, int TownTo,
-				int CostTo, int CostFrom)
-{
-
-}
-
-void RemoveRoads(BitLandTowns *Towns, int n)
-{
-	for (int i = 0; i < n; ++i) {
-
-	}
-}
-
-void PrintToll(BitLandTowns *Towns, int k)
-{
-	int Toll = 0;
-
-	std::cout << Toll << std::endl;
-}
+#include "BitLand.hpp"
 
 int main(int argc, char *argv[])
 {
