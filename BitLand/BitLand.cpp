@@ -24,9 +24,17 @@ void AddRoads(BitLandTowns *Towns, int TownFrom, int TownTo,
 			Towns[TownFrom].Costliest->next = temp;
 			Towns[TownFrom].Costliest = temp;
 		} else {
-			//Insert anywhere after Cheapest, doesn't matter where
-			temp->next = Towns[TownFrom].Cheapest->next;
-			Towns[TownFrom].Cheapest->next = temp;
+			//Insert after Cheapest in sorted fashion
+			RoadCost *iter = Towns[TownFrom].Cheapest;
+
+			while (iter->next) {
+				if (CostTo <= iter->next->Cost) {
+					temp->next = iter->next;
+					iter->next = temp;
+					break;
+				}
+				iter = iter->next;
+			}
 		}
 	}
 
@@ -51,9 +59,17 @@ void AddRoads(BitLandTowns *Towns, int TownFrom, int TownTo,
 			Towns[TownTo].Costliest->next = temp;
 			Towns[TownTo].Costliest = temp;
 		} else {
-			//Insert anywhere after Cheapest, doesn't matter where
-			temp->next = Towns[TownTo].Cheapest->next;
-			Towns[TownTo].Cheapest->next = temp;
+			//Insert after Cheapest in sorted fashion
+			RoadCost *iter = Towns[TownFrom].Cheapest;
+
+			while (iter->next) {
+				if (CostTo <= iter->next->Cost) {
+					temp->next = iter->next;
+					iter->next = temp;
+					break;
+				}
+				iter = iter->next;
+			}
 		}
 	}
 }
