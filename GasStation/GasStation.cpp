@@ -34,6 +34,7 @@ string GasStation(string strArr[])
   int CurrentGasStation = 0;
   int NumGasStations = atoi(strArr[0].c_str());
   int GasStationsVisited = 0;
+  int StartingGasStation = 1;
   
   if (strArr[0] <= "2")
     return "impossible";
@@ -48,6 +49,13 @@ string GasStation(string strArr[])
       CurrentGasLevel += AvailableGas;
       CurrentGasLevel -= GasNeeded;
       ++GasStationsVisited;
+    } else {
+      if (++GasStationsVisited == NumGasStations) {
+        return "impossible";
+      }
+      GasStationsVisited = 0;
+      CurrentGasLevel = 0;
+      StartingGasStation = CurrentGasStation+1+1;
     }
     ++CurrentGasStation;
     
@@ -57,7 +65,7 @@ string GasStation(string strArr[])
     
     // Reached the end, should we circle back?
     if (CurrentGasStation >= NumGasStations) {
-      if (GasStationsVisited < NumGasStations) {
+      if (GasStationsVisited == 0) {
         return "impossible";
       } else {
         //Not done with all gas stations
@@ -66,7 +74,7 @@ string GasStation(string strArr[])
     }
   }
 
-  convert << CurrentGasStation;
+  convert << StartingGasStation;
   return convert.str();      
 }
 
