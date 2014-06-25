@@ -36,7 +36,7 @@ string GasStation(string strArr[])
   int GasStationsVisited = 0;
   int StartingGasStation = 1;
   
-  if (strArr[0] <= "2")
+  if (strArr[0] < "2")
     return "impossible";
 
   while (GasStationsVisited < NumGasStations) {
@@ -50,7 +50,8 @@ string GasStation(string strArr[])
       CurrentGasLevel -= GasNeeded;
       ++GasStationsVisited;
     } else {
-      if (++GasStationsVisited == NumGasStations) {
+      if (GasStationsVisited >= CurrentGasStation &&
+          StartingGasStation-1 > CurrentGasStation) {
         return "impossible";
       }
       GasStationsVisited = 0;
@@ -88,4 +89,4 @@ int main()
   string A[] = gets(stdin);
   cout << GasStation(A);
   return 0;
-} 
+}
