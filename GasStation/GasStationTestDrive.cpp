@@ -38,24 +38,204 @@ int main()
 {   
 	std::vector<std::string> A;
 
-	// Edge cases
+	// Invalid, N should be >=2 
 	A.push_back("1");
 	A.push_back("1:1");
 	evaluate(GasStation(A), "impossible");
 	A.clear();
 
+	// Only 2 stations
 	A.push_back("2");
 	A.push_back("1:1");
 	A.push_back("1:1");
 	evaluate(GasStation(A), "1");
 	A.clear();
 
+	// 2 stations, but not enough gas
+	A.push_back("2");
+	A.push_back("0:1");
+	A.push_back("1:1");
+	evaluate(GasStation(A), "impossible");
+	A.clear();
+
+	// 2 stations, but not enough gas to come back
+	A.push_back("2");
+	A.push_back("1:1");
+	A.push_back("0:1");
+	evaluate(GasStation(A), "impossible");
+	A.clear();
+
+	// 2 stations, 0 gas, but 0 needed
+	A.push_back("2");
+	A.push_back("0:0");
+	A.push_back("0:0");
+	evaluate(GasStation(A), "1");
+	A.clear();
+
+	// 2 stations, enough gas
+	A.push_back("2");
+	A.push_back("2:0");
+	A.push_back("1:1");
+	evaluate(GasStation(A), "1");
+	A.clear();
+
+	// 2 stations, enough gas
+	A.push_back("2");
+	A.push_back("2:1");
+	A.push_back("0:1");
+	evaluate(GasStation(A), "1");
+	A.clear();
+
+	// 2 stations, enough gas, but only starting at second one
+	A.push_back("2");
+	A.push_back("0:1");
+	A.push_back("2:1");
+	evaluate(GasStation(A), "2");
+	A.clear();
+
+	// 2 stations, but not enough gas to finish circle from second one
+	A.push_back("2");
+	A.push_back("0:1");
+	A.push_back("1:1");
+	evaluate(GasStation(A), "impossible");
+	A.clear();
+
+	// 4 stations, enough gas
 	A.push_back("4");
 	A.push_back("3:1");
 	A.push_back("2:2");
 	A.push_back("1:2");
 	A.push_back("0:1");
 	evaluate(GasStation(A), "1");
+	A.clear();
+
+	// 4 stations, enough gas, but at alternating stations
+	A.push_back("4");
+	A.push_back("1:1");
+	A.push_back("0:2");
+	A.push_back("5:2");
+	A.push_back("0:1");
+	evaluate(GasStation(A), "3");
+	A.clear();
+
+	// 4 stations, not enough gas
+	A.push_back("4");
+	A.push_back("2:1");
+	A.push_back("2:2");
+	A.push_back("1:2");
+	A.push_back("0:1");
+	evaluate(GasStation(A), "impossible");
+	A.clear();
+
+	// 4 stations, not enough gas
+	A.push_back("4");
+	A.push_back("0:1");
+	A.push_back("0:2");
+	A.push_back("0:2");
+	A.push_back("5:1");
+	evaluate(GasStation(A), "impossible");
+	A.clear();
+
+	// 4 stations, not enough gas
+	A.push_back("4");
+	A.push_back("1:1");
+	A.push_back("4:2");
+	A.push_back("0:2");
+	A.push_back("0:1");
+	evaluate(GasStation(A), "impossible");
+	A.clear();
+
+	// 4 stations, not enough gas
+	A.push_back("4");
+	A.push_back("0:1");
+	A.push_back("5:2");
+	A.push_back("0:2");
+	A.push_back("0:1");
+	evaluate(GasStation(A), "impossible");
+	A.clear();
+
+	// 4 stations, enough gas
+	A.push_back("4");
+	A.push_back("0:1");
+	A.push_back("0:2");
+	A.push_back("0:2");
+	A.push_back("6:1");
+	evaluate(GasStation(A), "4");
+	A.clear();
+
+	// 4 stations, enough gas, but at alternating stations
+	A.push_back("4");
+	A.push_back("0:1");
+	A.push_back("4:2");
+	A.push_back("0:2");
+	A.push_back("2:1");
+	evaluate(GasStation(A), "2");
+	A.clear();
+
+	// 4 stations, enough gas, but at alternating stations
+	A.push_back("4");
+	A.push_back("3:1");
+	A.push_back("0:2");
+	A.push_back("3:2");
+	A.push_back("0:1");
+	evaluate(GasStation(A), "1");
+	A.clear();
+
+	// 4 stations, enough gas
+	A.push_back("4");
+	A.push_back("0:1");
+	A.push_back("0:2");
+	A.push_back("6:2");
+	A.push_back("0:1");
+	evaluate(GasStation(A), "3");
+	A.clear();
+
+	// 3 stations, enough gas
+	A.push_back("3");
+	A.push_back("3:1");
+	A.push_back("1:2");
+	A.push_back("0:1");
+	evaluate(GasStation(A), "1");
+	A.clear();
+
+	// 3 stations, enough gas
+	A.push_back("3");
+	A.push_back("0:1");
+	A.push_back("3:2");
+	A.push_back("1:1");
+	evaluate(GasStation(A), "2");
+	A.clear();
+
+	// 3 stations, enough gas
+	A.push_back("3");
+	A.push_back("1:1");
+	A.push_back("0:2");
+	A.push_back("3:1");
+	evaluate(GasStation(A), "3");
+	A.clear();
+
+	// 3 stations, not enough gas
+	A.push_back("3");
+	A.push_back("3:1");
+	A.push_back("1:2");
+	A.push_back("0:2");
+	evaluate(GasStation(A), "impossible");
+	A.clear();
+
+	// 3 stations, not enough gas
+	A.push_back("3");
+	A.push_back("0:1");
+	A.push_back("4:2");
+	A.push_back("0:2");
+	evaluate(GasStation(A), "impossible");
+	A.clear();
+
+	// 3 stations, not enough gas
+	A.push_back("3");
+	A.push_back("0:1");
+	A.push_back("0:2");
+	A.push_back("4:2");
+	evaluate(GasStation(A), "impossible");
 	A.clear();
 
 	return 0;
