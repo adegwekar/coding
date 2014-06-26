@@ -21,6 +21,8 @@ $(LIBRARY): $(LIBOBJECTS)
 .cpp.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
+.PHONY: clean
+
 clean: 
 	$(RM) $(EXECUTABLE) $(LIBRARY) *.o
 
